@@ -10,8 +10,6 @@ var isInNodeModules = 'node_modules' ===
 var relative = isInNodeModules ? '../..' : '.';
 rimrafSync(relative + '/build');
 
-console.log(config.entry);
-
 webpack(config).run(function(err, stats) {
   if (err) {
     console.error('Failed to create a production build. Reason:');
