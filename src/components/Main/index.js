@@ -12,7 +12,7 @@ class Main extends Component {
 
 	render() {
 		return (
-			<div className="ecwid-g-r">
+			<div className="ecwid-g-r normalized">
 		    <div className="ecwid-u-1"><Filter /></div>
 		    <div className="ecwid-u-1"><Grid /></div>
 			</div>

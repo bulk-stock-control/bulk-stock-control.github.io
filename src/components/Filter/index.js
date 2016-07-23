@@ -1,42 +1,44 @@
 import React, { Component } from 'react';
-import SearchInput, {createFilter} from 'react-search-input';
-
-const SKU = [123,123,123,123,123];
+import { getProductsFromBase } from '../../actions/product-actions';
+import { connect } from 'react-redux';
+import _ from 'lodash';
 
 class Filter extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchSKU: '',
-			searchName: '',
-			searchQuant: '',
+			searchObject: {
+				keyword: '',
+			},
 		};
 	}
 
-	searchSKU() {}
+	searchKeyword(event) {
+		const inputValue = event.target.value;
+		this.setState((state) => {
+			const newState = this.state;
+			newState.searchObject.keyword = inputValue;
+			return newState
+		});
+		this.getProducts.call(this, { ...this.state.searchObject, keyword: inputValue });
+	}
 	searchName() {}
 	searchQuant() {}
 
+	getProducts() {
+		return this.props.getProductsFromBase(this.state.searchObject)
+	}
+
 	render() {
-		const filteredSKU = SKU.filter(createFilter(this.state.searchSKU))
+
 		return (
 			<div className="ecwid-g-r">
 		    <div className="ecwid-u-1-3">
-      		<SearchInput
-						className="search-input form-control"
-						onChange={this.searchSKU}
-					/>
-      	</div>
-				<div className="ecwid-u-1-3">
-      		<SearchInput
+					<input
+						type="text"
 						className="form-control"
-						onChange={this.searchName}
-					/>
-      	</div>
-				<div className="ecwid-u-1-3">
-      		<SearchInput
-						className="form-control"
-						onChange={this.searchQuant}
+						onChange={this.searchKeyword.bind(this)}
+						defaultValue={this.state.searchObject.keyword}
 					/>
       	</div>
 			</div>
@@ -44,4 +46,9 @@ class Filter extends Component {
 	}
 }
 
-export default Filter;
+function mapStateToProps(state) {
+	return {
+		products: state.productReducer.products,
+	};
+}
+export default connect(mapStateToProps, { getProductsFromBase })(Filter);
