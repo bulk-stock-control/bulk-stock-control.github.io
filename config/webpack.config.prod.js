@@ -18,10 +18,12 @@ var indexHtmlPath = path.resolve(__dirname, relativePath, 'index.html');
 var faviconPath = path.resolve(__dirname, relativePath, 'favicon.ico');
 var buildPath = path.join(__dirname, isInNodeModules ? '../../..' : '..', 'build');
 
+console.log(path.join(srcPath, 'index.html'));
+
 module.exports = {
   bail: true,
   devtool: 'source-map',
-  entry: path.join(srcPath, 'index'),
+  entry: [path.join(srcPath, 'index.js')],
   output: {
     path: buildPath,
     filename: '[name].[chunkhash].js',

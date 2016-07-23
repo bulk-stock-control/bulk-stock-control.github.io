@@ -20,6 +20,8 @@ var indexHtmlPath = path.resolve(__dirname, relativePath, 'index.html');
 var faviconPath = path.resolve(__dirname, relativePath, 'favicon.ico');
 var buildPath = path.join(__dirname, isInNodeModules ? '../../..' : '..', 'build');
 
+console.warn(buildPath);
+
 module.exports = {
   devtool: 'eval',
   entry: [

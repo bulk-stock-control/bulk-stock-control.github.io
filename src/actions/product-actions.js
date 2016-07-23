@@ -69,7 +69,6 @@ export function setProductUnLimited(productId) {
 }
 
 export function saveProductToBase(product, quantity) {
-	debugger;
 	return dispatch => {
 		axios.put(`https://app.ecwid.com/api/v3/${storeId}/products/${product.id}?token=${accessToken}`, {
 			...product,
