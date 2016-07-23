@@ -53,6 +53,7 @@ class QuantityManager extends Component {
 						style={{
 							display: 'flex',
 							justifyContent: 'space-between',
+							flexWrap: 'wrap',
 						}}
 					>
 						<div>
