@@ -23,7 +23,7 @@ console.log(path.join(srcPath, 'index.html'));
 module.exports = {
   bail: true,
   devtool: 'source-map',
-  entry: [path.join(srcPath, 'index.js')],
+  entry:[path.join(srcPath, 'index.js')],
   output: {
     path: buildPath,
     filename: '[name].[chunkhash].js',
